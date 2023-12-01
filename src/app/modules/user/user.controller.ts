@@ -33,7 +33,11 @@ const getAllUsers = async (req: Request, res: Response) => {
       data: result,
     });
   } catch (err) {
-    console.log(err);
+    res.status(500).json({
+      success: false,
+      message: 'user not found',
+      data: err,
+    });
   }
 };
 
@@ -44,6 +48,20 @@ const getSingleUser = async (req: Request, res: Response) => {
     res.status(200).json({
       success: true,
       message: 'User fetched successfully!',
+      data: result,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const deleteSingeUser = async (req: Request, res: Response) => {
+  try {
+    const { userId } = req.params;
+    const result = await UserServices.deleteSingeUserFromDB;
+    res.status(200).json({
+      success: true,
+      message: 'User deleted successfully!',
       data: result,
     });
   } catch (err) {

@@ -16,8 +16,14 @@ const getSingleUserFromDB = async (_id: string) => {
   return result;
 };
 
+const deleteSingeUserFromDB = async (userId: string) => {
+  const result = await UserModel.findOne({ userId });
+  return result;
+};
+
 export const UserServices = {
   createUserIntoDB,
   getAllUserFromDB,
   getSingleUserFromDB,
+  deleteSingeUserFromDB,
 };
